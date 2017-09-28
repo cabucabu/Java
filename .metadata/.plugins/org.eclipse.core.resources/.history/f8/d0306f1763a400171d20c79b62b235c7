@@ -1,0 +1,19 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class GetPriceOil {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+    public void multiplicationOfZeroIntegersShouldReturnZero() {
+        TestData tester = new TestData(); // MyClass is tested
+
+        // assert statements=
+    }
+
+}

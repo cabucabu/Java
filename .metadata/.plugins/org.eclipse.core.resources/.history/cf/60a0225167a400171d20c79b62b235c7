@@ -1,0 +1,70 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class GetPriceOil {
+	public static BufferedReader BR;
+	
+	private static String getPrice(String key) {
+		String inputLine,price;
+		try {
+			while((inputLine = BR.readLine()) != null){
+//				System.out.println(inputLine);
+				if(inputLine.contains(key)){
+					price = inputLine.split("title=\"")[1].split("\"")[0];
+					return price;
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("error getPrice");
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	public static String getGasoline95(){
+		String key = "uxGasoline95PriceDiv";
+		return getPrice(key);
+	}
+
+	public static void main(String args[]){
+		init();
+		GetPriceOil.getGasoline95();
+		end();
+	}
+
+
+	private static void init() {
+		URL url;
+		try {
+			// get URL content
+			String a = "http://www.pttplc.com/th/getoilprice.aspx";
+			url = new URL(a);
+			URLConnection conn = url.openConnection();
+			// open the stream and put it into BufferedReader
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			BR = br;
+//			String inputLine;
+//			while ((inputLine = br.readLine()) != null) {
+//				System.out.println(inputLine);
+//			}
+//			br.close();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void end(){
+		try {
+			BR.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+}

@@ -1,0 +1,11 @@
+
+public class TestData {
+	public static void main(String args[]){
+		System.out.println("Hello");
+		TestData t = new TestData();
+		t.show();
+	}
+	void show(){
+		System.out.println("Hello");
+	}
+}
